@@ -1,144 +1,50 @@
-<html>
+
+<!DOCTYPE html>
 <head>
-<link rel="shortcut icon" type="image/x-icon" href="https://i.postimg.cc/4yXNHqZJ/logo-conoden-15324314242604.png" /> 
-<base href="https://cdn.example.com/modern-music-player/"></head>
-<html lang="es">
+
+<meta charset="UTF-8">
 <title>Radio Conoden</title>
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Reproductor de Música Moderno con Carátula Circular e Iconos Sociales</title>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-   
+<link rel="shortcut icon" type="image/x-icon" href="https://i.postimg.cc/4yXNHqZJ/logo-conoden-15324314242604.png" />
+<script src="https://dl.dropboxusercontent.com/s/45u6xzcnnri2re3/jquery-3.2.1.min.js?dl=0"></script>
+<script src="https://dl.dropboxusercontent.com/s/ai2ny5smsk07k7m/lunaradio.min.js?dl=0"></script>
+
+    
     <style>
-        :root {
-            --primary-color: #1DB954;
-            --secondary-color: #191414;
-            --text-color: #FFFFFF;
-            --background-color: #121212;
-            --live-color: #FF4136;
-        }
-
-        * {
-            margin: auto;
-            padding: auto;
-            box-sizing: border-box;
-        }
-
-        body { 
-    font-family: 'Roboto', sans-serif;
-    background: linear-gradient(135deg, #1a237e, #4a148c);
-    color: #ffffff;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100%;
-            min-height: 100vh;
-        }
-
-        .player-container {
-            background-color: rgba(255, 255, 255, 0.05);
-            border-radius: 50px;
-            padding: 1%;
-            width: 400px;
-            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
-        }
-
-        .album-art {
-            width: 250px;
-            height: 250px;
-            margin: 0 auto 30px;
-            border-radius: 50%;
-            overflow: hidden;
-            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
-            position: relative;
-        
-        }
-        
-
-        .album-art img {
-            position: absolute;
-            width: 100%;
+        html, body {
+            font-family: "Roboto", sans-serif;
             height: 100%;
-            color: blank;
-            object-fit: cover;
-            padding: 12px 12px;
-            border-radius: 50%;
-            margin-bottom: 20px;
-            font-size: 0.7em;
-            font-weight: 500;
-            animation: pulse 2s infinite;
-             background: linear-gradient(135deg, #31D305, #00FF00, #ffffff, #ffff00, #FF1F6F, #FE0101);
-             
-
-        }
-        
-
-        .equalizer-animation {
-            height: 40px;
+            margin: 0;
             display: flex;
-            align-items: flex-end;
-            justify-content: center;
-            margin-bottom: 20px;
-        }
-
-        .bar {
-            width: 11px;
-            margin: 0 2px;
-            background: linear-gradient(to top, var(--primary-color), var(--secondary-color));
-            border-radius: 3px;
-            animation: equalize 1.2s steps(8, end) infinite;
-            transition: height 0.3s;
-        }
-
-        @keyframes equalize {
-            0% { height: 10%; }
-            10% { height: 40%; }
-            20% { height: 65%; }
-            30% { height: 90%; }
-            40% { height: 60%; }
-            50% { height: 30%; }
-            60% { height: 70%; }
-            70% { height: 85%; }
-            80% { height: 50%; }
-            90% { height: 20%; }
-            100% { height: 10%; }
-        }
-
-        .song-info {
-            text-align: center;
-            margin-bottom: 30px;
-            position: relative;
-        }
-
-        .song-info h2 {
-            font-size: 1.5em;
-            font-weight: 600;
-            margin-bottom: 5px;
-        }
-
-        .song-info p {
-            font-size: 1em;
-            opacity: 0.7;
+            flex-direction: column;
+            color: #000000;
         }
         
-
-        .live-icon {
+        /* Estilos para los iconos de redes sociales */
+        .social-icons {
             position: absolute;
-            top: -20px;
-            right: 0;
-            background-color: var(--live-color);
-            color: white;
-            padding: 2px 5px;
-            border-radius: 10px;
+            right: 34%; 
+            top: 47%; 
+            transform: translateY(-50%); 
+            display: flex;
+            flex-direction: fila; 
+            gap: 10px; 
+        }
+
+        .social-icon {
+            width: 40px; 
+            height: 40px; 
+            border-radius: 3%; 
+            object-fit: cover; 
             font-size: 0.8em;
             font-weight: 500;
             text-transform: uppercase;
             animation: pulse 1.5s infinite;
-        }
 
-        @keyframes pulse {
+            
+        
+        }
+        
+         @keyframes pulse {
             0% {
                 opacity: 1;
             }
@@ -148,88 +54,6 @@
             100% {
                 opacity: 1;
             }
-        }
-
-        .controls {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-        }
-
-        .controls button {
-            background-color: var(--primary-color);
-            border: none;
-            color: var(--text-color);
-            font-size: 24px;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            width: 60px;
-            height: 60px;
-            border-radius: 50%;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            padding: 0;
-        }
-
-        .controls button:hover {
-            background-color: #1ed760;
-            transform: scale(1.05);
-        }
-
-        .volume-container {
-            display: flex;
-            align-items: center;
-            margin-top: 20px;
-        }
-
-        .volume-icon {
-            margin-right: 10px;
-            font-size: 20px;
-        }
-
-        #volume-control {
-            -webkit-appearance: none;
-            width: 100%;
-            height: 5px;
-            border-radius: 5px;
-            background: rgba(255, 255, 255, 0.1);
-            outline: none;
-        }
-
-        #volume-control::-webkit-slider-thumb {
-            -webkit-appearance: none;
-            appearance: none;
-            width: 15px;
-            height: 15px;
-            border-radius: 50%;
-            background: var(--primary-color);
-            cursor: pointer;
-        }
-
-        #volume-control::-moz-range-thumb {
-            width: 15px;
-            height: 15px;
-            border-radius: 50%;
-            background: var(--primary-color);
-            cursor: pointer;
-        }
-
-        .social-icons {
-            display: flex;
-            justify-content: center;
-            margin-top: 20px;
-        }
-
-        .social-icons a {
-            color: var(--text-color);
-            font-size: 24px;
-            margin: 0 10px;
-            transition: color 0.3s ease;
-        }
-
-        .social-icons a:hover {
-            color: var(--primary-color);
         }
         @keyframes pulse {
               0% {
@@ -244,148 +68,112 @@
                  transform: scale(1);
               box-shadow: 0 0 0 0 rgba(255, 255, 255, 0);
   }
-        
-        
-    </style> 
-<body>
-    <div class="player-container">
-    <div id="radio1"> 
-        <div class="album-art" id="album-art">
-            <img id="album-cover" src="https://example.com/covers/default-cover.jpg" alt="Portada del álbum por defecto">
-        </div>
-        
-        <div class="equalizer-animation">
-            <div class="bar"></div>
-            <div class="bar"></div>
-            <div class="bar"></div>
-            <div class="bar"></div>
-            <div class="bar"></div>
-            <div class="bar"></div>
-            <div class="bar"></div>
-            <div class="bar"></div>
-        </div>
-        <div class="song-info">
-            <span class="live-icon">En vivo</span>
-            <h2 id="song-title">La canción del verano</h2>
-            <p id="artist">Artista Ejemplo</p>
-            
-        </div>
-        <div class="controls">
-            <button id="play-pause"><i class="fas fa-play"></i></button>
-        </div>
-        <div class="volume-container">
-            <span class="volume-icon"><i class="fas fa-volume-up"></i></span>
-            <input type="range" id="volume-control" min="0" max="1" step="0.1" value="1">
-        </div>
-        <div class="social-icons">
-            <a href=" https://web.facebook.com/radioconoden/" target="_blank"><img loading="lazy" alt="Sígueme en Facebook" height="35" width="35" src=" https://1.bp.blogspot.com/-Pop-U7OywXs/YPhkfrImyiI/AAAAAAAAA1Y/UBnVfTK9j2U-bIUqwZYMNSQPvz_l06mbwCPcBGAYYCw/s0/facebook-icono.png" title="Sígueme en Facebook"/></a>
-            <a href=" https://bit.ly/3ceq07D" target="_blank"><img loading="lazy" alt="Sígueme en WhatsApp" height="35" width="35" src=" https://1.bp.blogspot.com/-Vc_W7xraNnc/YPhkfwQExQI/AAAAAAAAA1c/dI72v37UC0EGJd7jWvKWYD3WMwZ7eER7gCPcBGAYYCw/s0/whatsapp-icono.png" title="Sígueme en WhatsApp"/></a>
-            <a href="https://play.google.com/store/apps/details?id=radio.conoden.te.activa&hl=es" target="_blank"><img loading="lazy" alt=" Sígueme en PlayStore" height="35" width="35" src=" https://i.postimg.cc/9XpcpnYh/play-store.png" title="Sígueme en PlayStore"/></a>
-            <a href=" https://www.youtube.com/channel/@radioconoden" target="_blank"><img loading="lazy" alt="Sígueme en YouTube" height="35" width="35" src=" https://1.bp.blogspot.com/-0Ao8V_ZtT5Q/YPhkfO0JqkI/AAAAAAAAA1U/Sz5GlaSW78AsY3nZpcqeIoPA_HQUSCVLgCPcBGAYYCw/s0/Youtube-icono.png" title=" Sígueme en YouTube "/></a>
-            <a href=" https://radioconoden.blogspot.com/" target="_blank"><img loading="lazy" alt="Sígueme en Web" height="35" width="35" src="https://i.postimg.cc/CKm4JY58/web.png" title="Sígueme en la Web"/></a>
-            <a href="https://play.google.com/store/apps/details?id=radio.conoden.te.activa&hl=es" target="_blank"><img loading="lazy" alt="Sígueme en PWA" height="35" width="35" src=" https://i.postimg.cc/SRwd8rst/PWA.png" title="Sígueme en PWA"/></a>
+    </style>
+
+<body style="margin:0px">
+<div id="lunaradio" style='width:100%; height:100%;background-image: url("https://i.postimg.cc/25ZHSh9k/fondo.jpg"); background-repeat: no-repeat; background-size: cover; background-position: center;
+-webkit-border-top-left-radius: 0px;
+  -webkit-border-top-right-radius: 0px;
+  -webkit-border-bottom-right-radius: 0px;
+  -webkit-border-bottom-left-radius: 0px;
+  -moz-border-radius-topleft: 0px;
+  -moz-border-radius-topright: 0px;
+  -moz-border-radius-bottomright: 0px;
+  -moz-border-radius-bottomleft: 0px;
+  border-top-left-radius: 0px;
+  border-top-right-radius: 0px;
+  border-bottom-right-radius: 0px;
+  border-bottom-left-radius: 0px;
+  border: none;'>
+<script src="https://dl.dropboxusercontent.com/s/45u6xzcnnri2re3/jquery-3.2.1.min.js?dl=0" type="text/javascript"></script>
+<script src="https://dl.dropboxusercontent.com/s/ai2ny5smsk07k7m/lunaradio.min.js?dl=0" type="text/javascript"></script>
+
+<div id="lunaradio" style="width:100%; height:550px;"></div>
+<div id="iosInstructions" style="display:none;">
+
         </div>
     </div>
+    <center>
+<div class="social-icons">
+        <a href="https://wa.me/51979338387" target="_blank">
+            <img src="https://1.bp.blogspot.com/-Vc_W7xraNnc/YPhkfwQExQI/AAAAAAAAA1c/dI72v37UC0EGJd7jWvKWYD3WMwZ7eER7gCPcBGAYYCw/s0/whatsapp-icono.png" class="social-icon" alt="WhatsApp">
+        </a>
+        <a href="https://www.facebook.com/radioconoden" target="_blank">
+            <img src="https://1.bp.blogspot.com/-Pop-U7OywXs/YPhkfrImyiI/AAAAAAAAA1Y/UBnVfTK9j2U-bIUqwZYMNSQPvz_l06mbwCPcBGAYYCw/s0/facebook-icono.png" class="social-icon" alt="Facebook">
+        </a>
+        <a href="https://play.google.com/store/apps/details?id=radio.conoden.te.activa&hl=es" target="_blank">
+            <img src="https://i.postimg.cc/9XpcpnYh/play-store.png" class="social-icon" alt="Instagram">
+        </a>
+        <a href="https://radioconoden.blogspot.com/" target="_blank">
+            <img src="https://i.postimg.cc/CKm4JY58/web.png" class="social-icon" alt="Web">
+        </a>
+    </div>
+    </center> 
+<script type="3bc5e4e5245e387f3290c38f-text/javascript">
 
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/howler/2.2.3/howler.min.js"></script>
-    <script>
-        const playPauseBtn = document.getElementById('play-pause');
-        const songTitle = document.getElementById('song-title');
-        const artist = document.getElementById('artist');
-        const albumCover = document.getElementById('album-cover');
-        const volumeControl = document.getElementById('volume-control');
-        const volumeIcon = document.querySelector('.volume-icon i');
-        const equalizerAnimation = document.querySelector('.equalizer-animation');
-        const bars = document.querySelectorAll('.bar');
+$("#lunaradio").lunaradio({
+	
+	userinterface: "big",
+	backgroundcolor: "rgba(9,15,25,0.8)",
+	fontcolor: "#31D305",
+	hightlightcolor: "#FE0101",
+	fontname: "Saira Condensed",
+	googlefont: "Saira+Condensed:wght@100",
+	fontratio: "0.6",
+	radioname: "SONANDO AHORA",
+	scroll: "true",
+	coverimage: "https://i.postimg.cc/VLZ3TmdT/logo-conoden.jpg",
+	onlycoverimage: "false",
+	usevisualizer: "real",
+	coverstyle: "animated",
+	visualizertype: "8",
+	displayliveicon: "true",
+  visualizeropacity: "1.0",
+	multicolorvisualizer: "true",
+  color1: "#00FF00",
+  color2: "#ffff00",
+  color3: "#FF1F6F",
+  color4: "#FF1F6F",
+	itunestoken: "1000lIPN",
+	metadatatechnic: "fallback", //fallback (usar para zeno)corsproxy
+	ownmetadataurl: "",
+	corsproxy: "", //stream.zeno.fm/wxpchhfw44zuv
+	streamurl: "https://stream.zeno.fm/wxpchhfw44zuv", //stream.zenolive.com/negnsmcq44zuv
+	streamtype: "zeno",  //soporta: zeno, icecast2, shoutcast2, radiozeno
+	idzeno: "negnsmcq44zuv",  //negnsmcq44zuv  //wxpchhfw44zuv
+	icecastmountpoint: "",
+	radionomyid: "",
+	radionomyapikey: "",
+	radiojarid: "",
+	radiocoid: "",
+	shoutcastpath: "",
+	shoutcastid: "1",
+	streamsuffix: "",
+	metadatainterval: "20000",
+	volume: "85",
+	debug: "false",
+	usestreamcorsproxy: "false", 
+	corsproxy: "https://corsradio.herokuapp.com/index.php?q=",
+	autoplay:"true",
+});
 
-        const song = {
-            title: "Radio Conoden",
-            artist: "Me Activa",
-            src: " https://stream.zeno.fm/wxpchhfw44zuv",
-            cover: "https://i.postimg.cc/cL5R8hb7/logo.png"
-        };
-
-        let sound;
-
-        function loadSong() {
-            songTitle.textContent = song.title;
-            artist.textContent = song.artist;
-            albumCover.src = song.cover;
-            albumCover.alt = `Portada del álbum ${song.title} por ${song.artist}`;
-
-            sound = new Howl({
-                src: [song.src],
-                html5: true,
-                autoplay: true, // Add this line to enable autoplay
-                onplay: () => {
-                    playPauseBtn.innerHTML = '<i class="fas fa-pause"></i>';
-                    startEqualizerAnimation();
-                },
-                onpause: () => {
-                    playPauseBtn.innerHTML = '<i class="fas fa-play"></i>';
-                    stopEqualizerAnimation();
-                },
-                onend: () => {
-                    playPauseBtn.innerHTML = '<i class="fas fa-play"></i>';
-                    stopEqualizerAnimation();
-                }
-            });
-        }
-
-        function startEqualizerAnimation() {
-            bars.forEach((bar, index) => {
-                bar.style.animation = `equalize 1.2s steps(8, end) infinite ${index * 0.1}s`;
-            });
-        }
-
-        function stopEqualizerAnimation() {
-            bars.forEach(bar => {
-                bar.style.animation = 'none';
-                bar.style.height = '10%';
-            });
-        }
-
-        function playSong() {
-            sound.play();
-        }
-
-        function pauseSong() {
-            sound.pause();
-        }
-
-        function updateVolumeIcon(value) {
-            if (value >= 0.5) {
-                volumeIcon.className = 'fas fa-volume-up';
-            } else if (value > 0) {
-                volumeIcon.className = 'fas fa-volume-down';
-            } else {
-                volumeIcon.className = 'fas fa-volume-mute';
-            }
-        }
-
-        playPauseBtn.addEventListener('click', () => {
-            if (sound.playing()) {
-                pauseSong();
-            } else {
-                playSong();
-            }
-        });
-
-        volumeControl.addEventListener('input', (e) => {
-            const value = parseFloat(e.target.value);
-            sound.volume(value);
-            updateVolumeIcon(value);
-        });
-
-        loadSong();
-        updateVolumeIcon(1); // Inicializar el icono de volumen
-        playSong(); // Add this line to start playing the song immediately
-    </script></center>
-    <div class="repro-box2">
-</div><style>#radio1 {color: #FFFFFF;margin: 0 0 0%;overflow: hidden;padding: 10px; background:#0060ff; border: solid 5px #fffc00; border-radius:40px;}
-</style>
-</div>
-
-
+</script>		 			
+<script src="https://ajax.cloudflare.com/cdn-cgi/scripts/7089c43e/cloudflare-static/rocket-loader.min.js" data-cf-settings="3bc5e4e5245e387f3290c38f-|49" defer=""></script>
 </body>
+
+   
+
+    <footer style="display:grid;align-content:end">
+        <div style="background-color:#ffff00;color:#010000;text-align:center;padding:5px">
+            &copy;<a href="http://wa.me/51979338387">HTML Desarrollado Por: Corporacion Conoden Cel. 979338387</a>
+        </div>
+        <script>
+            $(".mobile-nav-toggle").click(function () {
+                $("body").toggleClass("mobile-nav-active");
+                $(".mobile-nav-toggle i").toggleClass("fa-bars fa-times");
+            });
+        </script>
+    </footer>
+</body>
+
 </html>
